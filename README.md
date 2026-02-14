@@ -16,7 +16,14 @@ see: https://dl.khadas.com/products/edge2/specs/edge2-specs.pdf
 
 No UEFI on the board, 
 
-Flashing SPI:
+Flashing SPI is a mystery now, but some commands I used:
 - 52520  2025-11-27 23:10  docker pull temach/edge2-rockchip-burn:ubuntu-v22-rockchip4
+- 52496  2025-11-27 00:50  less write_latest_oowow_into_spi_flash
+- 52497  2025-11-27 00:50  curl dl.khadas.com/online/rockchip-burn > rockchip-burn.sh
+
+```
+# less write_latest_oowow_into_spi_flash
+curl dl.khadas.com/online/rockchip-burn | sh -s - oowow --refresh --write --spi
+```
 
 
