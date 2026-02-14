@@ -148,4 +148,51 @@ ID 260 gen 9 top level 5 path @.snapshots
 /dev/loop0p2 on /mnt/breados type btrfs (rw,relatime,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@)
 /dev/loop0p1 on /mnt/breados/boot type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
 
+~/archlinux/khadas-edge2 (main)$ cat /mnt/breados/etc/fstab 
+# Static information about the filesystems. 
+# See fstab(5) for details. 
+# <file system> <dir> <type> <options> <dump> <pass>
+UUID=a7e36363-fa76-4aaa-9618-79e45e1a0dc3 / btrfs rw,relatime,ssd,compress=zstd,space_cache=v2,subvol=/@ 0 0
+UUID=a7e36363-fa76-4aaa-9618-79e45e1a0dc3 /.snapshots btrfs rw,relatime,ssd,discard=async,compress=zstd,space_cache=v2,subvol=/@.snapshots 0 0
+UUID=a7e36363-fa76-4aaa-9618-79e45e1a0dc3 /home btrfs rw,relatime,ssd,discard=async,compress=zstd,space_cache=v2,subvol=/@home 0 0
+UUID=a7e36363-fa76-4aaa-9618-79e45e1a0dc3 /var/cache/pacman/pkg btrfs rw,relatime,ssd,discard=async,space_cache=v2,subvol=/@pkg 0 0
+UUID=a7e36363-fa76-4aaa-9618-79e45e1a0dc3 /var/log btrfs rw,relatime,ssd,discard=async,compress=zstd,space_cache=v2,subvol=/@log 0 0
+UUID=771E-137D /boot vfat rw,relatime,fmask=0022,dmask=0022,codepage=437,shortname=mixed,utf8,errors=remount-ro 0 2
+
+
+# sudo rsync -r boot ~/archlinux/khadas-edge2/bredos-root-partition-from-img
+# sudo umount boot
+# rm -rf bin boot dev etc home lib mnt opt proc root run sbin srv sys tmp usr var version
+
+
+~/archlinux/khadas-edge2 (main)$ wget http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
+
+# sudo bsdtar -xpf ArchLinuxARM-aarch64-latest.tar.gz -C /mnt/breados
+# sudo rm -rf boot
+# sudo mkdir boot
+# sudo mount /dev/loop0p1 /mnt/breados/boot
+
+
+# Copy old fstab to /mnt/breados/etc/fstab and leave just two lines for @ (aka root) and /boot
+
+# sudo arch-chroot /mnt/breados
+# passwd
+
+
+
+~/archlinux/khadas-edge2 (main)$ sudo losetup -Pf --show edge2-work.img 
+/dev/loop1
+losetup: edge2-work.img: Warning: file does not end on a 512-byte sector boundary; the remaining end of the file will be ignored.
+
+~/archlinux/khadas-edge2 (main)$ sudo mount -t btrfs -o subvol=@ /dev/loop1p2 /mnt/bredos_orig
+
+~/archlinux/khadas-edge2 (main)$ ls /mnt/bredos_orig/usr/lib/modules                 
+6.1.75-rkr3
+
+~/archlinux/khadas-edge2 (main)$ sudo rsync -aHAX --numeric-ids /mnt/bredos_orig/usr/lib/modules/6.1.75-rkr3/ /mnt/breados/usr/lib/modules/6.1.75-rkr3/
+
+~/archlinux/khadas-edge2 (main)$ ls /mnt/breados/usr/lib/modules
+6.1.75-rkr3  6.18.3-1-aarch64-ARCH
+
+
 ```
