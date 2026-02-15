@@ -77,7 +77,12 @@ The two directories above are more or less kept up to date with each other.
 BreadOS: https://dl.khadas.com/products/oowow/images/bredos/edge2/
 
 
-### Swapping rootfs
+### Build own Ubuntu/Debian image
+
+Official instructions: https://docs.khadas.com/products/sbc/edge2/development/linux/build-ubuntu
+
+
+### Swapping rootfs with chatgpt hallucinations
 
 Undo previous:
 
@@ -193,6 +198,30 @@ losetup: edge2-work.img: Warning: file does not end on a 512-byte sector boundar
 
 ~/archlinux/khadas-edge2 (main)$ ls /mnt/breados/usr/lib/modules
 6.1.75-rkr3  6.18.3-1-aarch64-ARCH
+
+# sudo arch-chroot /mnt/breados mkinitcpio -k 6.1.75-rkr3 -g /boot/initramfs-linux-rockchip-rkr3.img
+[sudo] password for artem: 
+==> Starting build: '6.1.75-rkr3'
+  -> Running build hook: [base]
+  -> Running build hook: [systemd]
+==> ERROR: module not found: 'crypto_lz4'
+  -> Running build hook: [autodetect]
+  -> Running build hook: [microcode]
+==> WARNING: architecture 'aarch64' not supported, skipping hook
+  -> Running build hook: [modconf]
+  -> Running build hook: [kms]
+==> WARNING: No module containing the symbol 'drm_privacy_screen_register' found in: 'drivers/platform'
+  -> Running build hook: [keyboard]
+  -> Running build hook: [keymap]
+  -> Running build hook: [sd-vconsole]
+==> ERROR: file not found: '/etc/vconsole.conf'
+  -> Running build hook: [block]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [fsck]
+==> WARNING: No fsck helpers found. fsck will not be run on boot.
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: '/boot/initramfs-linux-rockchip-rkr3.img'
+==> WARNING: errors were encountered during the build. The image may not be complete.
 
 
 ```
