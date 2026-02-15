@@ -69,12 +69,22 @@ The commands for eMMC and SPI with rockchip-burn-v0.144.sh:
 ### Images
 
 Ubuntu: 
-- Images for USB Flash Tool and for oowow : https://dl.khadas.com/products/edge2/firmware/ubuntu/ 
+- Images for USB Flash Tool and for oowow (this link was listed officially): https://dl.khadas.com/products/edge2/firmware/ubuntu/ 
 - Images for oowow: https://dl.khadas.com/products/oowow/images/edge2/
 
 The two directories above are more or less kept up to date with each other.
 
 BreadOS: https://dl.khadas.com/products/oowow/images/bredos/edge2/
+
+
+Regarding image format, info from https://dl.khadas.com/products/edge2/firmware/ubuntu/ :
+
+readme.txt
+Images come from folder 'emmc' are used for eMMC installation, can only flash to eMMC storage with USB Flash Tool. Check usage: https://docs.khadas.com/products/sbc/edge2/install-os/install-os-into-emmc-via-usb-tool
+
+Images come from folder 'generic' are used for SD/USB installation, can only flash to TF card/USB Stick or eMMC with OOWOW. https://docs.khadas.com/products/sbc/edge2/install-os/install-os-into-external-storage
+
+So generic images I guess use boot partition FAT32 type + root partition.
 
 
 ### Build own Ubuntu/Debian image
