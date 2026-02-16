@@ -77,7 +77,11 @@ The two directories above are more or less kept up to date with each other.
 BreadOS: https://dl.khadas.com/products/oowow/images/bredos/edge2/
 
 
-Regarding image format, info from https://dl.khadas.com/products/edge2/firmware/ubuntu/ :
+### Image format
+
+Looking at two pages on how to install into eMMC vs generic install, it seems that generic image is just "normally" packed image, whcih u-boot (in SPI flash) can load: https://docs.khadas.com/products/sbc/common/install-os/start
+
+Same info from https://dl.khadas.com/products/edge2/firmware/ubuntu/ :
 
 readme.txt
 Images come from folder 'emmc' are used for eMMC installation, can only flash to eMMC storage with USB Flash Tool. Check usage: https://docs.khadas.com/products/sbc/edge2/install-os/install-os-into-emmc-via-usb-tool
