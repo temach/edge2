@@ -66,6 +66,9 @@ The commands for eMMC and SPI with rockchip-burn-v0.144.sh:
 # rockchip-burn oowow --write --no-reset --spi https://dl.khadas.com/products/oowow/system/versions/edge2/edge2-oowow-250801.000-spi.img.gz
 ```
 
+There is another util for flashing to eMMC: https://github.com/khadas//utils/
+And its tutorial: https://docs.khadas.com/products/sbc/common/install-os/install-os-into-emmc-on-ubuntu
+
 ### Images
 
 Ubuntu: 
