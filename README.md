@@ -99,6 +99,60 @@ So generic images I guess use boot partition FAT32 type + root partition.
 Official instructions: https://docs.khadas.com/products/sbc/edge2/development/linux/build-ubuntu
 
 
+### Linux version
+
+Khadas linux repo and torvalds linux repo comparison. The diff can be found in linux-diff.path file next to this readme.
+
+```
+~/archlinux/khadas-edge2/khadas-linux (khadas-linux-6.12.y)$ g show HEAD
+commit edcfaf01e3b943a25d2199993165c6b3642a5f0d (HEAD -> khadas-linux-6.12.y, origin/khadas-linux-6.12.y)
+Merge: aaa80c0160ad 1845ad16acc5
+Author: numbqq <hbjsxieqi@163.com>
+Date:   Tue Aug 5 19:06:19 2025 +0800
+
+    Merge pull request #157 from JacobZang/khadas-linux-6.12.y
+    
+    defconfig: enable psi, cgroup, cpusets and binder selftest
+```
+
+
+```
+~/archlinux/khadas-edge2/torvalds-linux (HEAD)$ g show HEAD
+commit 61baee2dc5341c936e7fa7b1ca33c5607868de69 (HEAD, tag: v6.12.4)
+Author: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Date:   Mon Dec 9 10:41:16 2024 +0100
+
+    Linux 6.12.4
+    
+    Link: https://lore.kernel.org/r/20241206143527.654980698@linuxfoundation.org
+    Tested-by: Ronald Warsow <rwarsow@gmx.de>
+    Tested-by: Luna Jernberg <droidbittin@gmail.com>
+    Tested-by: Mark Brown <broonie@kernel.org>
+    Tested-by: Salvatore Bonaccorso <carnil@debian.org>
+    Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
+    Tested-by: Peter Schneider <pschneider1968@googlemail.com>
+    Tested-by: Takeshi Ogasawara <takeshi.ogasawara@futuring-girl.com>
+    Tested-by: Ron Economos <re@w6rz.net>
+    Tested-by: kernelci.org bot <bot@kernelci.org>
+    Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
+    Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+diff --git a/Makefile b/Makefile
+index e81030ec6831..87dc2f810860 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ VERSION = 6
+ PATCHLEVEL = 12
+-SUBLEVEL = 3
++SUBLEVEL = 4
+ EXTRAVERSION =
+ NAME = Baby Opossum Posse
+ ```
+
+
+
 ### Swapping rootfs with chatgpt hallucinations
 
 Undo previous:
